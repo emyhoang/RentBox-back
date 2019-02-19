@@ -1,3 +1,4 @@
+const cors = require('cors')
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -94,5 +95,6 @@ auth.post('/login', function (req, res) {
 });
 
 app.use('/api', api);
+app.use(cors());
 app.use('/auth', auth);
 app.listen(process.env.PORT || 63145);
