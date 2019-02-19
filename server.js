@@ -85,16 +85,6 @@ auth.post('/login', function (req, res) {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
 app.use('/api', api);
 app.use('/auth', auth);
 app.listen(63145);
