@@ -7,7 +7,13 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const mongoose = require('mongoose');
 const path = require('path');
-mongoose.connect('mongodb://localhost/rentbox');
+const environment = process.env.NODE_ENV || 'development';
+
+if (environment === 'development') {
+  mongoose.connect('mongodb://localhost/rentbox');
+} else {
+  mongoose.connect(process.env.MONGODB_URI)
+}
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
