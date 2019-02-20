@@ -46,6 +46,18 @@ var UserSchema = new mongoose.Schema({
 mongoose.model("User", UserSchema);
 var User = mongoose.model("User");
 
+var ProductSchema = new mongoose.Schema({
+  name: { type: String, required: [true, 'Product name is required'], minlength: [2, "Product name must be 2 or more characters."] },
+  image: { type: String, required: [true, 'image is required'], minlength: [2, "Image URL is too short and should be 2 characters or more."] },
+  category: { type: String, required: [true, 'Cateogory is required'] },
+  description: { type: String, required: [true, 'Description is required'], minlength: [10, "Product description must be 10 or more characters"] },
+  price: { type: Number, required: [true, 'Price is required'] },
+  size: { type: String, required: [true, 'Size is required'] },
+}, { timestamps: true });
+mongoose.model('Product', ProductSchema);
+var Product = mongoose.model('Product');
+
+
 
 auth.get('/users', function (req, res) {
   User.find({}, function (err, users) {
