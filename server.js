@@ -57,6 +57,18 @@ var ProductSchema = new mongoose.Schema({
 mongoose.model('Product', ProductSchema);
 var Product = mongoose.model('Product');
 
+api.get("/products", (req, res) => {
+  Product.find({}, function (err, products) {
+    if (err) {
+      console.log("no products found", err);
+      res.json({ status: false, error: err });
+    }
+    else {
+      res.json({ status: true, products: products })
+    }
+  })
+});
+
 api.post("/product", (req, res) => {
   var product = new Product(req.body);
   product.save(function (err, product) {
