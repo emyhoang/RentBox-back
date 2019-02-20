@@ -61,10 +61,8 @@ api.post("/product", (req, res) => {
   var product = new Product(req.body);
   product.save(function (err, product) {
     if (err) {
-      console.log("Error saving a product to DB", err);
       res.json({ status: false, error: err });
     } else {
-      console.log('successfully added a product to db');
       res.json({ status: true, product: product });
     }
   })
